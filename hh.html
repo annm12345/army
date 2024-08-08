@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burmese Speech-to-Text</title>
+  <style>
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button id="startBtn">Start Recording</button>
+  <div id="output"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const output = document.getElementById('output');
+    const recognition = new webkitSpeechRecognition(); // For Chrome, you might need to use webkit prefix.
+
+    recognition.lang = 'my-MM'; // Setting language to Burmese
+    recognition.interimResults = true; // Enable interim results for better accuracy
+    recognition.maxAlternatives = 1; // Set maximum number of alternative transcripts to 1
+
+    startBtn.addEventListener('click', () => {
+      startBtn.style.display = 'none';
+      recognition.start();
+    });
+
+    recognition.onresult = (event) => {
+      let interimTranscript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          const result = event.results[i][0].transcript;
+          output.textContent = result;
+          sendData(result); // Send the recognized text to the PHP script
+        } else {
+          interimTranscript += event.results[i][0].transcript;
+        }
+      }
+      output.textContent = interimTranscript;
+      
+      console.log('interimTranscript:', interimTranscript);
+    };
+
+    recognition.onend = () => {
+      startBtn.style.display = 'inline-block'; // Show the start button again after stopping recording
+    };
+
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error detected: ' + event.error);
+    };
+
+    function sendData(transcript) {
+      $.ajax({
+        url: 'text.php',
+        type: 'GET',
+        data: { transcript: transcript },
+        success: function(response) {
+          // Assuming your response contains the predictedLabel
+          const predictedLabel = response.predictedLabel;
+          console.log('Predicted label:', predictedLabel);
+          
+          // Do something with the predictedLabel
+          // For example, updating an element with the predicted label
+          if(predictedLabel === 'မြေပုံ') {
+            window.location.href = 'mm.php';
+          } else if(predictedLabel === 'ကြေးနန်း') {
+            window.location.href = 'telegraph.php';
+          } 
+        },
+        error: function(xhr, status, error) {
+          console.error('Error:', error);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

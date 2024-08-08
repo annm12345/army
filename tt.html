@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telegraph Form</title>
+<style>
+    .telegraph-form {
+        width: 21cm; /* A4 width */
+        height: 29.7cm; /* A4 height */
+        margin: 50px auto;
+        padding: 20px;
+        border: none;
+        border-radius: 5px;
+        overflow-x: auto; /* Add horizontal scrollbar if needed */
+    }
+    .telegraph-form p{
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .top{
+        position: relative;
+        overflow-y: auto; /* Add vertical scrollbar if needed */
+        max-height: 60vh; /* Maximum height to limit vertical scrollbar */
+    }
+    .top_left{
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+    }
+    .top_left div{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .top_right{
+        position: absolute;
+        top:0px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 35px); /* Adjusted width for better alignment */
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+
+    label {
+        font-size: 15px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Hide button when printing */
+    @media print {
+        button {
+            display: none;
+        }
+    }
+
+    /* Additional styles for mobile */
+    @media (max-width: 768px) {
+        .telegraph-form {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    }
+
+    /* Adjust .body style */
+    .body {
+        margin-top: 20px;
+    }
+    .body input[type="text"],
+    .body textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    .body label {
+        font-size: 15px;
+    }
+    .body div {
+        display: flex;
+        gap: 20px;
+    }
+</style>
+</head>
+<body>
+    <div class="telegraph-form" id="telegraphForm">
+        <p>မှတ်ပုံတင်ကြေးနန်းစာပုံစံ(အစား)</p>
+        <div class="top">
+            <div class="top_left">
+                <div>
+                    <label for="firstInput">(ပ)</label><input type="text" id="firstInput" placeholder="ရတခလရ">
+                </div>
+                <div>
+                    <label for="secondInput">(လ)</label><input type="text" id="secondInput" placeholder="ရတတမခ">
+                </div>
+                <div>
+                    <label for="thirdInput">(တ)</label><input type="text" id="thirdInput" placeholder="တမခ">
+                </div>
+            </div>
+            <div class="top_right">
+                <input type="text" id="fourthInput" placeholder="၂၀၂၄မေ၀၇၁၆၀၀" style="width: 110px;"> <label for="fourthInput">ချိန်</label>
+            </div>
+        </div>
+        <div class="body">
+            <input type="text" id="fiveInput" placeholder="၁ ဦး ၁ လဝ၂။" style="width: 150px;">
+            
+            
+        </div>
+        <div class="body" style="margin-top: 1.3rem;">
+            <div>
+                <label for="sixInput" style="padding-top: 10px;">၁။</label><textarea type="text" id="sixInput" placeholder="အကြောင်းအရာအားတိုတိလိုရှင်းရေးသားပါ" style="min-height: 100px;width: 100%;"></textarea>
+            </div>
+            <div>
+                <label for="sevenInput" style="padding-top: 10px;">၂။</label><textarea type="text" id="sevennput" placeholder="ရကြောင်းပြန်/သိရှိနိုင်ပါရန်နှင့်လိုအပ်သည်များညွန်ကြားပေးနိုင်ပါရန်တင်ပြအပ်" style="min-height: 100px;width: 100%;"></textarea>
+            </div>
+        </div>
+        <div class="body" style="margin-top: 1.3rem;">
+            <div>
+                <textarea type="text" id="eigthInput" placeholder="စရဖအရာရှိ" ></textarea>
+            </div>
+            <div>
+                <textarea type="text" id="nineInput" placeholder="ရတခလရ" ></textarea>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        function printForm() {
+            // Hide the button before printing
+            document.querySelector("button").style.display = "none";
+            // Print the form
+            window.print();
+            // Restore the button after printing
+            document.querySelector("button").style.display = "block";
+        }
+    </script>
+    <!-- Call the printForm() function when clicking -->
+    <button onclick="printForm()">Save as Word</button>
+</body>
+</html>

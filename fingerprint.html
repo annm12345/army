@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fingerprint Scanner System</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #fingerprint-display {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            margin: 20px auto;
+        }
+
+        #login-form, #register-form {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <div id="login-form">
+            <div id="fingerprint-display"></div>
+            <button onclick="scanFingerprint()">Scan Fingerprint</button>
+            <p id="login-status"></p>
+        </div>
+        <h2>Register</h2>
+        <div id="register-form">
+            <div id="fingerprint-display"></div>
+            <button onclick="scanFingerprint()">Scan Fingerprint</button>
+            <p id="register-status"></p>
+        </div>
+    </div>
+    <script>
+        function scanFingerprint() {
+            // Simulate fingerprint scanning process
+            document.getElementById("fingerprint-display").innerHTML = "Scanning..."; // Simulate scanning animation
+            
+            setTimeout(function() {
+                // Dummy fingerprint authentication success
+                var success = Math.random() < 0.5; // Simulating success rate
+                
+                if (success) {
+                    // If login form is clicked
+                    if (event.target.parentNode.id === "login-form") {
+                        document.getElementById("login-status").innerHTML = "Fingerprint authenticated. Logging in...";
+                        // Here you can perform further actions like redirecting to a dashboard
+                    } 
+                    // If register form is clicked
+                    else if (event.target.parentNode.id === "register-form") {
+                        document.getElementById("register-status").innerHTML = "Fingerprint authenticated. Registering...";
+                        // Here you can perform further actions like storing fingerprint data
+                    }
+                } else {
+                    // Authentication failed
+                    alert("Fingerprint authentication failed. Please try again.");
+                }
+                
+                // Reset fingerprint display
+                document.getElementById("fingerprint-display").innerHTML = "";
+            }, 2000); // Simulating 2 seconds fingerprint scanning time
+        }
+
+    </script>
+</body>
+</html>

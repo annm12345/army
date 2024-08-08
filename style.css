@@ -1,0 +1,273 @@
+.search-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px; /* Adjust the width as needed */
+}
+
+.search-input {
+    width: calc(100% - 70px); /* Adjust based on the width of the microphone icon */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button {
+    border: none;
+    
+}
+.search-container h2 {
+    font-size: 18px; /* Adjust the font size as needed */
+    color: #333; /* Adjust the color as needed */
+    margin: 10px 0; /* Adjust the margin as needed */
+}
+
+.fa-paper-plane {
+    background-color: #4067e9;
+    color:#fff;
+    /*Adjustthecolorasneeded*/border: none;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px; /* Adjust the margin as needed */
+}
+.fa-microphone{
+    background-color: #34f06c;
+    /*Adjustthecolorasneeded*/border: none;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+.voice-recorder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px; /* Adjust as needed */
+}
+
+.voice-recorder .heading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#voice-recorder {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.heading {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.line {
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+.btn.record {
+    background-color: #4caf50;
+    border: none;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -ms-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+}
+.btn.record.active {
+    background-color: #370ea8;
+    
+}
+
+.icon {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.result {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    min-height: 50px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+}
+
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.clear,
+.download {
+    background-color: #f44336;
+}
+
+.clear:hover,
+.download:hover {
+    background-color: #d32f2f;
+}
+
+.buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttons .btn ion-icon {
+    margin-right: 5px;
+}
+
+.buttons .btn p {
+    margin: 0;
+}
+.voice-wave {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4caf50;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: pulse 1s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.6);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.6);
+        opacity: 0.6;
+    }
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-2px) rotate(-2deg); }
+    40% { transform: translateX(2px) rotate(2deg); }
+    60% { transform: translateX(-2px) rotate(-2deg); }
+    80% { transform: translateX(2px) rotate(2deg); }
+    100% { transform: translateX(0) rotate(0); }
+}
+
+.record .icon ion-icon {
+    animation: shake 0.5s ease-in-out;
+}
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.category-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .category-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .category-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Style for category boxes */
+.category {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.category a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .search-container {
+        display: flex;
+        align-items: center;
+        /* Allow items to wrap */
+        justify-content: space-between; /* Add space between items */
+    }
+    .search-container h2 {
+        font-size: 11px; /* Adjust the font size as needed */
+        color: #333; /* Adjust the color as needed */
+        margin: 10px 0; /* Adjust the margin as needed */
+    }
+    
+    .search-input {
+        margin-bottom: 10px;
+        width: calc(100% - 90px); /* Adjust based on the width of the microphone icon and button */
+    }
+    
+    .search-button {
+        margin-left: 0;
+        width: 45px; /* Adjust the width of the button */
+    }
+    
+    .fa-microphone {
+        margin-left: 10px; /* Adjust the margin as needed */
+    }
+}

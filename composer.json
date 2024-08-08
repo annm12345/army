@@ -1,0 +1,11 @@
+{
+    "require": {
+        "php-ai/php-ml": "^0.10.0",
+        "google/cloud-language": "^0.32.3"
+    },
+    "config": {
+        "platform": {
+            "php": "^8.3"
+        }
+    }
+}

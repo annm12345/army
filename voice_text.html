@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burmese Speech-to-Text</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Burmese Speech-to-Text</h1>
+        <div class="output" id="output"></div>
+        <button id="startButton">Start Recording</button>
+        <button id="stopButton" style="display: none;">Stop Recording</button>
+    </div>
+    <script>
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const output = document.getElementById('output');
+        let recognition = null;
+
+        startButton.addEventListener('click', () => {
+            startButton.style.display = 'none';
+            stopButton.style.display = 'block';
+
+            recognition = new webkitSpeechRecognition();
+            recognition.lang = 'my-MM'; // Specify Burmese language
+            recognition.continuous = true; // Enable continuous recognition
+
+            recognition.onresult = function(event) {
+                const result = event.results[event.results.length - 1][0].transcript;
+                output.innerHTML += result + ' ';
+            };
+
+            recognition.onend = function() {
+                output.innerHTML += '<br>Speech recognition stopped.<br>';
+            };
+
+            recognition.onerror = function(event) {
+                output.innerHTML += 'Error occurred: ' + event.error + '<br>';
+            };
+
+            recognition.start();
+        });
+
+        stopButton.addEventListener('click', () => {
+            stopButton.style.display = 'none';
+            startButton.style.display = 'block';
+
+            if (recognition) {
+                recognition.stop();
+                recognition = null;
+            }
+        });
+    </script>
+</body>
+</html>
